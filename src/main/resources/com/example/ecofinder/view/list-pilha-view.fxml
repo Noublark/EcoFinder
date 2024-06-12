@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ecofinder.controller.ListPilhaController">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="112.0" fitWidth="108.0" layoutX="249.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../static/images/battery.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="357.0" layoutY="111.0" text="Lista de descartes das pilhas:">
+               <font>
+                  <Font name="Marlett" size="40.0" />
+               </font>
+            </Label>
+            <TextFlow fx:id="txtFlowPilha" layoutX="242.0" layoutY="237.0" prefHeight="468.0" prefWidth="647.0" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

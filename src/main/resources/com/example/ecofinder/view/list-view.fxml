@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ecofinder.controller.ListController">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="475.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../static/images/user.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="85.0" fitWidth="103.0" layoutX="279.0" layoutY="351.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../static/images/battery.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="82.0" fitWidth="78.0" layoutX="283.0" layoutY="541.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../static/images/pill.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="txtQntPilha" layoutX="506.0" layoutY="381.0" prefHeight="25.0" prefWidth="88.0" promptText="Máx: 100" />
+            <MenuButton fx:id="menuBtnLocalPilha" contentDisplay="TOP" ellipsisString="" layoutX="395.0" layoutY="381.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: lightgreen; -fx-background-radius: 12px;" text="Local">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </MenuButton>
+            <MenuButton fx:id="menuBtnLocalRemedio" layoutX="395.0" layoutY="568.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: lightgreen; -fx-background-radius: 12px;" text="Local">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </MenuButton>
+            <TextField fx:id="txtQntRemedio" layoutX="508.0" layoutY="568.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="88.0" promptText="Máx: 100" />
+            <DatePicker fx:id="datePickerDataRemedio" layoutX="615.0" layoutY="568.0" prefHeight="25.0" prefWidth="106.0" />
+            <Label layoutX="481.0" layoutY="412.0" prefHeight="17.0" prefWidth="141.0" text="Digite um número válido!" textFill="RED" visible="false" />
+            <Label layoutX="483.0" layoutY="602.0" text="Digite um número válido!" textFill="RED" visible="false" />
+            <DatePicker fx:id="datePickerDataPilha" layoutX="617.0" layoutY="381.0" prefHeight="25.0" prefWidth="106.0" />
+            <Button fx:id="btnRegistrarRemedio" layoutX="753.0" layoutY="568.0" mnemonicParsing="false" onAction="#handleRegistrarRemedio" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: lightgreen; -fx-background-radius: 12px;" text="Registrar" />
+            <Button fx:id="btnRegistrarPilha" layoutX="752.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleRegistrarPilha" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: lightgreen; -fx-background-radius: 12px;" text="Registrar" />
+            <Hyperlink fx:id="linkListaPilha" layoutX="296.0" layoutY="450.0" onAction="#handleListaPilha" text="Ver lista" />
+            <Hyperlink fx:id="linkListaRemedio" layoutX="296.0" layoutY="633.0" onAction="#handleListaRemedio" text="Ver lista" />
+            <Label layoutX="515.0" layoutY="362.0" text="Quantidade">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+            <Label layoutX="329.0" layoutY="233.0" text="Registre os seus descartes!">
+               <font>
+                  <Font name="Marlett" size="40.0" />
+               </font>
+            </Label>
+            <Label layoutX="515.0" layoutY="549.0" text="Quantidade" />
+            <Label layoutX="761.0" layoutY="412.0" text="Registrado!" textFill="#071cfa" visible="false" />
+            <Label layoutX="762.0" layoutY="602.0" text="Registrado!" textFill="#071cfa" visible="false" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

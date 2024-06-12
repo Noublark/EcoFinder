@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('Roboto-Medium.ttf');
+}
+
+.text {
+    -fx-font-family: "Roboto";
+    font-size: 40px;
+    font-weight: normal;
+}
+
+.button-ok {
+    -fx-background-radius: 12px;
+    -fx-font-size: 14px;
+    -fx-font-family: 'Arial';
+    -fx-min-width: 80px;
+    -fx-min-height: 30px;
+}
+
+

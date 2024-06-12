@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: fffafa;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ecofinder.controller.RegisterConfirmController">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="199.0" fitWidth="220.0" layoutX="251.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../static/images/EcoFinderIcon.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="199.0" layoutY="331.0" text="Cadastro realizado com sucesso!">
+               <font>
+                  <Font name="Marlett" size="22.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnOK" layoutX="316.0" layoutY="396.0" mnemonicParsing="false" onAction="#handleOK" prefHeight="25.0" prefWidth="68.0" style="-fx-background-color: lightgreen; -fx-background-radius: 12px;" text="OK" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
