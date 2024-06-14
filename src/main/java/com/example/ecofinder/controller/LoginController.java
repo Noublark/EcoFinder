@@ -69,15 +69,15 @@ public class LoginController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ecofinder/view/map-view.fxml"));
                 Parent root = loader.load();
                 MapController mapController = loader.getController();
-                Stage stage = (Stage) btnLogin.getScene().getWindow();
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
+                Stage stageLoginAutenticado = (Stage) btnLogin.getScene().getWindow();
+                Scene sceneLoginAutenticado = new Scene(root);
+                stageLoginAutenticado.setScene(sceneLoginAutenticado);
                 Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
                 double centerX = screenBounds.getMinX() + (screenBounds.getWidth() / 2);
                 double centerY = screenBounds.getMinY() + (screenBounds.getHeight() / 2);
-                stage.setX(centerX - (stage.getWidth() / 2));
-                stage.setY(centerY - (stage.getHeight() / 2));
-                stage.show();
+                stageLoginAutenticado.setX(centerX - (stageLoginAutenticado.getWidth() / 2));
+                stageLoginAutenticado.setY(centerY - (stageLoginAutenticado.getHeight() / 2));
+                stageLoginAutenticado.show();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -100,10 +100,10 @@ public class LoginController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ecofinder/view/register-view.fxml"));
             Parent root = loader.load();
             RegisterController registerController = loader.getController();
-            Stage stage = (Stage) btnCadastro.getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            Stage stageCadastro = (Stage) btnCadastro.getScene().getWindow();
+            Scene sceneCadastro = new Scene(root);
+            stageCadastro.setScene(sceneCadastro);
+            stageCadastro.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -115,10 +115,10 @@ public class LoginController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ecofinder/view/reset-password-view.fxml"));
             Parent root = loader.load();
             ResetPasswordController resetPasswordController = loader.getController();
-            Stage stage = (Stage) linkSenha.getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            Stage stageEsqueceuSenha = (Stage) linkSenha.getScene().getWindow();
+            Scene sceneEsqueceuSenha = new Scene(root);
+            stageEsqueceuSenha.setScene(sceneEsqueceuSenha);
+            stageEsqueceuSenha.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

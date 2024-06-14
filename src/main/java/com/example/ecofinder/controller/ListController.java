@@ -116,15 +116,15 @@ public class ListController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ecofinder/view/list-pilha-view.fxml"));
         Parent root = loader.load();
         ListPilhaController listPilhaController = loader.getController();
-        Stage stage = (Stage) linkListaPilha.getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        Stage stageListaPilha = (Stage) linkListaPilha.getScene().getWindow();
+        Scene sceneListaPilha = new Scene(root);
+        stageListaPilha.setScene(sceneListaPilha);
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
         double centerX = screenBounds.getMinX() + (screenBounds.getWidth() / 2);
         double centerY = screenBounds.getMinY() + (screenBounds.getHeight() / 2);
-        stage.setX(centerX - (stage.getWidth() / 2));
-        stage.setY(centerY - (stage.getHeight() / 2));
-        stage.show();
+        stageListaPilha.setX(centerX - (stageListaPilha.getWidth() / 2));
+        stageListaPilha.setY(centerY - (stageListaPilha.getHeight() / 2));
+        stageListaPilha.show();
     }
 
     @FXML
@@ -167,14 +167,14 @@ public class ListController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ecofinder/view/list-remedio-view.fxml"));
         Parent root = loader.load();
         ListRemedioController listRemedioController = loader.getController();
-        Stage stage = (Stage) linkListaRemedio.getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        Stage stageListaRemedio = (Stage) linkListaRemedio.getScene().getWindow();
+        Scene sceneListaRemedio = new Scene(root);
+        stageListaRemedio.setScene(sceneListaRemedio);
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
         double centerX = screenBounds.getMinX() + (screenBounds.getWidth() / 2);
         double centerY = screenBounds.getMinY() + (screenBounds.getHeight() / 2);
-        stage.setX(centerX - (stage.getWidth() / 2));
-        stage.setY(centerY - (stage.getHeight() / 2));
-        stage.show();
+        stageListaRemedio.setX(centerX - (stageListaRemedio.getWidth() / 2));
+        stageListaRemedio.setY(centerY - (stageListaRemedio.getHeight() / 2));
+        stageListaRemedio.show();
     }
 }
