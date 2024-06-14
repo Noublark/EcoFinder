@@ -69,27 +69,27 @@ public class LoginController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ecofinder/view/map-view.fxml"));
                 Parent root = loader.load();
                 MapController mapController = loader.getController();
-                Stage stageLoginAutenticado = (Stage) btnLogin.getScene().getWindow();
-                Scene sceneLoginAutenticado = new Scene(root);
-                stageLoginAutenticado.setScene(sceneLoginAutenticado);
+                Stage stageMapa = (Stage) btnLogin.getScene().getWindow();
+                Scene sceneMapa = new Scene(root);
+                stageMapa.setScene(sceneMapa);
                 Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
                 double centerX = screenBounds.getMinX() + (screenBounds.getWidth() / 2);
                 double centerY = screenBounds.getMinY() + (screenBounds.getHeight() / 2);
-                stageLoginAutenticado.setX(centerX - (stageLoginAutenticado.getWidth() / 2));
-                stageLoginAutenticado.setY(centerY - (stageLoginAutenticado.getHeight() / 2));
-                stageLoginAutenticado.show();
+                stageMapa.setX(centerX - (stageMapa.getWidth() / 2));
+                stageMapa.setY(centerY - (stageMapa.getHeight() / 2));
+                stageMapa.show();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
+            Alert alertErroAutenticacao = new Alert(Alert.AlertType.ERROR);
             Image icon = new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png"));
-            alert.setTitle("Erro");
-            alert.setHeaderText(null);
-            alert.setContentText("Nome de usuário ou senha inválidos!");
-            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-            stage.getIcons().add(new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png")));
-            alert.showAndWait();
+            alertErroAutenticacao.setTitle("Erro");
+            alertErroAutenticacao.setHeaderText(null);
+            alertErroAutenticacao.setContentText("Nome de usuário ou senha inválidos!");
+            Stage stageErroAutenticacao = (Stage) alertErroAutenticacao.getDialogPane().getScene().getWindow();
+            stageErroAutenticacao.getIcons().add(new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png")));
+            alertErroAutenticacao.showAndWait();
         }
 
     }

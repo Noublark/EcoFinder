@@ -38,14 +38,14 @@ public class RegisterController {
         String loginCadastro = txtLoginCadastro.getText();
         objUsuario.setLogin(loginCadastro);
         if (servicos.verificarLogin(loginCadastro)) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
+            Alert alertUsuarioEmUso = new Alert(Alert.AlertType.ERROR);
             Image icon = new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png"));
-            alert.setTitle("Erro");
-            alert.setHeaderText(null);
-            alert.setContentText("Nome de usuário já está em uso!");
-            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-            stage.getIcons().add(new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png")));
-            alert.showAndWait();
+            alertUsuarioEmUso.setTitle("Erro");
+            alertUsuarioEmUso.setHeaderText(null);
+            alertUsuarioEmUso.setContentText("Nome de usuário já está em uso!");
+            Stage stageUsuarioEmUso = (Stage) alertUsuarioEmUso.getDialogPane().getScene().getWindow();
+            stageUsuarioEmUso.getIcons().add(new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png")));
+            alertUsuarioEmUso.showAndWait();
             return;
         }
         String senhaCadastro = txtSenhaCadastro.getText();
@@ -57,22 +57,22 @@ public class RegisterController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ecofinder/view/register-confirm-view.fxml"));
                 Parent root = loader.load();
                 RegisterConfirmController registerConfirmController = loader.getController();
-                Stage stage = (Stage) btnCadastrar.getScene().getWindow();
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
+                Stage stageCadastroConfirmado = (Stage) btnCadastrar.getScene().getWindow();
+                Scene sceneCadastroConfirmado = new Scene(root);
+                stageCadastroConfirmado.setScene(sceneCadastroConfirmado);
+                stageCadastroConfirmado.show();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
+            Alert alertSenhasDiferentes = new Alert(Alert.AlertType.ERROR);
             Image icon = new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png"));
-            alert.setTitle("Erro");
-            alert.setHeaderText(null);
-            alert.setContentText("As senhas não são iguais!");
-            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-            stage.getIcons().add(new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png")));
-            alert.showAndWait();
+            alertSenhasDiferentes.setTitle("Erro");
+            alertSenhasDiferentes.setHeaderText(null);
+            alertSenhasDiferentes.setContentText("As senhas não são iguais!");
+            Stage stageSenhasDiferentes = (Stage) alertSenhasDiferentes.getDialogPane().getScene().getWindow();
+            stageSenhasDiferentes.getIcons().add(new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png")));
+            alertSenhasDiferentes.showAndWait();
         }
 
     }

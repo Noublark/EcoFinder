@@ -27,10 +27,10 @@ public class MapController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ecofinder/view/list-view.fxml"));
             Parent root = loader.load();
             ListController listController = loader.getController();
-            Stage stage = (Stage) btnLista.getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            Stage stageLista = (Stage) btnLista.getScene().getWindow();
+            Scene sceneLista = new Scene(root);
+            stageLista.setScene(sceneLista);
+            stageLista.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

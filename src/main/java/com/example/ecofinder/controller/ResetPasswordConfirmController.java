@@ -27,10 +27,10 @@ public class ResetPasswordConfirmController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ecofinder/view/login-view.fxml"));
             Parent root = loader.load();
             LoginController loginController = loader.getController();
-            Stage stage = (Stage) btnOKRedefinir.getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            Stage stageLogin = (Stage) btnOKRedefinir.getScene().getWindow();
+            Scene sceneLogin = new Scene(root);
+            stageLogin.setScene(sceneLogin);
+            stageLogin.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
