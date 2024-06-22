@@ -1,7 +1,7 @@
 package com.example.ecofinder.models;
 
 public class Usuario {
-    private String login, senha, loginAutenticador, senhaAutenticador, loginRedefinir, senhaRedefinir, usuarioLogado;
+    private String login, senha, loginAutenticador, senhaAutenticador, loginRedefinir, senhaRedefinir;
 
     public String getLogin() {
         return login; // getter que retorna o valor da String login
@@ -50,9 +50,5 @@ public class Usuario {
     public void setSenhaRedefinir(String senhaRedefinir) {
         this.senhaRedefinir = senhaRedefinir;
     }
-
-    public String getUsuarioLogado() { return usuarioLogado; }
-
-    public void setUsuarioLogado(String usuarioLogado) { this.usuarioLogado = usuarioLogado; }
 
 }

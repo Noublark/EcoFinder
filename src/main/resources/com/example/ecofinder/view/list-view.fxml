@@ -46,8 +46,8 @@
             </MenuButton>
             <TextField fx:id="txtQntRemedio" layoutX="508.0" layoutY="568.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="88.0" promptText="Máx: 100" />
             <DatePicker fx:id="datePickerDataRemedio" layoutX="615.0" layoutY="568.0" prefHeight="25.0" prefWidth="106.0" />
-            <Label layoutX="481.0" layoutY="412.0" prefHeight="17.0" prefWidth="141.0" text="Digite um número válido!" textFill="RED" visible="false" />
-            <Label layoutX="483.0" layoutY="602.0" text="Digite um número válido!" textFill="RED" visible="false" />
+            <Label fx:id="labelNumPilha" layoutX="481.0" layoutY="412.0" prefHeight="17.0" prefWidth="141.0" textFill="RED" />
+            <Label fx:id="labelNumRemedio" layoutX="483.0" layoutY="602.0" textFill="RED" />
             <DatePicker fx:id="datePickerDataPilha" layoutX="617.0" layoutY="381.0" prefHeight="25.0" prefWidth="106.0" />
             <Button fx:id="btnRegistrarRemedio" layoutX="753.0" layoutY="568.0" mnemonicParsing="false" onAction="#handleRegistrarRemedio" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: lightgreen; -fx-background-radius: 12px;" text="Registrar" />
             <Button fx:id="btnRegistrarPilha" layoutX="752.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleRegistrarPilha" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: lightgreen; -fx-background-radius: 12px;" text="Registrar" />
@@ -64,8 +64,13 @@
                </font>
             </Label>
             <Label layoutX="515.0" layoutY="549.0" text="Quantidade" />
-            <Label layoutX="761.0" layoutY="412.0" text="Registrado!" textFill="#071cfa" visible="false" />
-            <Label layoutX="762.0" layoutY="602.0" text="Registrado!" textFill="#071cfa" visible="false" />
+            <Label fx:id="labelRegistrarPilha" layoutX="761.0" layoutY="412.0" textFill="#071cfa" />
+            <Label fx:id="labelRegistrarRemedio" layoutX="762.0" layoutY="602.0" textFill="#071cfa" />
+            <ImageView fx:id="imageViewVoltar" fitHeight="49.0" fitWidth="40.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#handleVoltar" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../static/images/back%20arrow.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </center>

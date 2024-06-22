@@ -23,6 +23,11 @@
                </font>
             </Label>
             <TextFlow fx:id="txtFlowRemedio" layoutX="242.0" layoutY="237.0" prefHeight="468.0" prefWidth="647.0" />
+            <ImageView fx:id="imageViewVoltar" fitHeight="49.0" fitWidth="40.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#handleVoltar" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../static/images/back%20arrow.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </center>

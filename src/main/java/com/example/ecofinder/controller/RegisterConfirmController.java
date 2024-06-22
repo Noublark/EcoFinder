@@ -2,6 +2,7 @@ package com.example.ecofinder.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -19,6 +20,10 @@ public class RegisterConfirmController {
         btnOK.setOnAction(event -> {
             handleOK();
         });
+
+        btnOK.setOnMouseEntered(event -> btnOK.setCursor(Cursor.HAND));
+        btnOK.setOnMouseExited(event -> btnOK.setCursor(Cursor.DEFAULT));
+
     }
 
     @FXML

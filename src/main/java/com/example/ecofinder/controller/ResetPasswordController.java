@@ -4,12 +4,14 @@ import com.example.ecofinder.models.Usuario;
 import com.example.ecofinder.services.ServicosUsuarios;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -27,12 +29,25 @@ public class ResetPasswordController {
     private TextField txtSenhaRedefinir2;
     @FXML
     private Button btnRedefinir;
+    @FXML
+    private ImageView imageViewVoltar;
 
     @FXML
     public void initialize() {
         btnRedefinir.setOnAction(event -> {
             handleRedefinir();
         });
+
+        imageViewVoltar.setOnMouseClicked(mouseEvent -> {
+            handleVoltar();
+        });
+
+        btnRedefinir.setOnMouseEntered(event -> btnRedefinir.setCursor(Cursor.HAND));
+        btnRedefinir.setOnMouseExited(event -> btnRedefinir.setCursor(Cursor.DEFAULT));
+
+        imageViewVoltar.setOnMouseEntered(event -> imageViewVoltar.setCursor(Cursor.HAND));
+        imageViewVoltar.setOnMouseExited(event -> imageViewVoltar.setCursor(Cursor.DEFAULT));
+
     }
 
     @FXML
@@ -64,6 +79,21 @@ public class ResetPasswordController {
             Stage stageSenhasDiferentes = (Stage) alertSenhasDiferentes.getDialogPane().getScene().getWindow();
             stageSenhasDiferentes.getIcons().add(new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png")));
             alertSenhasDiferentes.showAndWait();
+        }
+    }
+
+    @FXML
+    public void handleVoltar() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ecofinder/view/login-view.fxml"));
+            Parent root = loader.load();
+            LoginController loginController = loader.getController();
+            Stage stageLogin = (Stage) imageViewVoltar.getScene().getWindow();
+            Scene sceneLogin = new Scene(root);
+            stageLogin.setScene(sceneLogin);
+            stageLogin.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

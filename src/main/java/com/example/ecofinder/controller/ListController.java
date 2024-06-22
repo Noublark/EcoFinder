@@ -3,14 +3,20 @@ package com.example.ecofinder.controller;
 import com.example.ecofinder.models.ListaPilha;
 import com.example.ecofinder.models.ListaRemedio;
 import com.example.ecofinder.services.ServicosUsuarios;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -42,6 +48,16 @@ public class ListController {
     private Button btnRegistrarRemedio;
     @FXML
     private Hyperlink linkListaRemedio;
+    @FXML
+    private ImageView imageViewVoltar;
+    @FXML
+    private Label labelNumPilha;
+    @FXML
+    private Label labelNumRemedio;
+    @FXML
+    private Label labelRegistrarPilha;
+    @FXML
+    private Label labelRegistrarRemedio;
 
     @FXML
     public void initialize() {
@@ -49,7 +65,7 @@ public class ListController {
             handleRegistrarPilha();
         });
 
-        for (String local : new String[]{"Salvador Shopping", "Pernambruxa" }) {
+        for (String local : new String[]{"Salvador Shopping", "Atacadão - Salvador Bonocô" }) {
             MenuItem menuItem = new MenuItem(local);
             menuItem.setOnAction(event -> menuBtnLocalPilha.setText(menuItem.getText()));
             menuBtnLocalPilha.getItems().add(menuItem);
@@ -68,26 +84,65 @@ public class ListController {
             handleRegistrarRemedio();
         });
 
-        for (String local : new String[]{"Unijorge", "Casa do cabrunco" }) {
+        for (String local : new String[]{"Drogasil - Salvador Shopping", "Drogaria São Paulo - Pituba" }) {
             MenuItem menuItem2 = new MenuItem(local);
             menuItem2.setOnAction(event -> menuBtnLocalRemedio.setText(menuItem2.getText()));
             menuBtnLocalRemedio.getItems().add(menuItem2);
         }
         menuBtnLocalRemedio.setText("Local");
+
+        imageViewVoltar.setOnMouseClicked(mouseEvent -> {
+            handleVoltar();
+        });
+
+        btnRegistrarPilha.setOnMouseEntered(event -> btnRegistrarPilha.setCursor(Cursor.HAND));
+        btnRegistrarPilha.setOnMouseExited(event -> btnRegistrarPilha.setCursor(Cursor.DEFAULT));
+
+        btnRegistrarRemedio.setOnMouseEntered(event -> btnRegistrarRemedio.setCursor(Cursor.HAND));
+        btnRegistrarRemedio.setOnMouseExited(event -> btnRegistrarRemedio.setCursor(Cursor.DEFAULT));
+
+        datePickerDataPilha.setOnMouseEntered(event -> datePickerDataPilha.setCursor(Cursor.HAND));
+        datePickerDataPilha.setOnMouseExited(event -> datePickerDataPilha.setCursor(Cursor.DEFAULT));
+
+        datePickerDataRemedio.setOnMouseEntered(event -> datePickerDataRemedio.setCursor(Cursor.HAND));
+        datePickerDataRemedio.setOnMouseExited(event -> datePickerDataRemedio.setCursor(Cursor.DEFAULT));
+
+        imageViewVoltar.setOnMouseEntered(event -> imageViewVoltar.setCursor(Cursor.HAND));
+        imageViewVoltar.setOnMouseExited(event -> imageViewVoltar.setCursor(Cursor.DEFAULT));
+
     }
 
     @FXML
     private void handleRegistrarPilha() {
         try {
             if (menuBtnLocalPilha.getText().equals("Local")) {
-                throw new NullPointerException("Local não selecionado");
+                Alert alertErroLocalPilha = new Alert(Alert.AlertType.ERROR);
+                Image icon = new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png"));
+                alertErroLocalPilha.setTitle("Erro");
+                alertErroLocalPilha.setHeaderText(null);
+                alertErroLocalPilha.setContentText("Local não selecionado!");
+                Stage stageErroLocalPilha = (Stage) alertErroLocalPilha.getDialogPane().getScene().getWindow();
+                stageErroLocalPilha.getIcons().add(new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png")));
+                alertErroLocalPilha.showAndWait();
+                throw new NullPointerException("Local não selecionado!");
             }
             if (txtQntPilha.getText().isEmpty()) {
+                labelNumPilha.setText("Digite um número válido!");
                 throw new NullPointerException("Quantidade não preenchida");
             }
             if (datePickerDataPilha.getValue() == null) {
-                throw new NullPointerException("Data não selecionada");
+                Alert alertErroDataPilha = new Alert(Alert.AlertType.ERROR);
+                Image icon = new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png"));
+                alertErroDataPilha.setTitle("Erro");
+                alertErroDataPilha.setHeaderText(null);
+                alertErroDataPilha.setContentText("Data não selecionada!");
+                Stage stageErroDataPilha = (Stage) alertErroDataPilha.getDialogPane().getScene().getWindow();
+                stageErroDataPilha.getIcons().add(new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png")));
+                alertErroDataPilha.showAndWait();
+                throw new NullPointerException("Data não selecionada!");
             }
+
+            labelNumPilha.setText("");
 
             String localPilha = menuBtnLocalPilha.getText();
             int quantidadePilha = Integer.parseInt(txtQntPilha.getText());
@@ -102,9 +157,17 @@ public class ListController {
             datePickerDataPilha.setValue(null);
 
             System.out.println("Registro adicionado: Local - " + localPilha + ", Quantidade - " + quantidadePilha + ", Data - " + dataPilha);
+            labelRegistrarPilha.setText("Registrado!");
+
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> {
+                labelRegistrarPilha.setText("");
+            }));
+            timeline.setCycleCount(1);
+            timeline.play();
+
 
         } catch (NumberFormatException e) {
-            System.err.println("Erro: Quantidade deve ser um número inteiro.");
+            System.err.println("Erro.");
         } catch (NullPointerException e) {
             System.err.println("Erro: " + e.getMessage());
         }
@@ -131,12 +194,29 @@ public class ListController {
     private void handleRegistrarRemedio() {
         try {
             if (menuBtnLocalRemedio.getText().equals("Local")) {
+                Alert alertErroLocalRemedio = new Alert(Alert.AlertType.ERROR);
+                Image icon = new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png"));
+                alertErroLocalRemedio.setTitle("Erro");
+                alertErroLocalRemedio.setHeaderText(null);
+                alertErroLocalRemedio.setContentText("Local não selecionado!");
+                Stage stageErroLocalRemedio = (Stage) alertErroLocalRemedio.getDialogPane().getScene().getWindow();
+                stageErroLocalRemedio.getIcons().add(new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png")));
+                alertErroLocalRemedio.showAndWait();
                 throw new NullPointerException("Local não selecionado");
             }
             if (txtQntRemedio.getText().isEmpty()) {
+                labelNumRemedio.setText("Digite um número válido!");
                 throw new NullPointerException("Quantidade não preenchida");
             }
             if (datePickerDataRemedio.getValue() == null) {
+                Alert alertErroDataRemedio = new Alert(Alert.AlertType.ERROR);
+                Image icon = new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png"));
+                alertErroDataRemedio.setTitle("Erro");
+                alertErroDataRemedio.setHeaderText(null);
+                alertErroDataRemedio.setContentText("Data não selecionada!");
+                Stage stageErroDataRemedio = (Stage) alertErroDataRemedio.getDialogPane().getScene().getWindow();
+                stageErroDataRemedio.getIcons().add(new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png")));
+                alertErroDataRemedio.showAndWait();
                 throw new NullPointerException("Data não selecionada");
             }
 
@@ -153,6 +233,14 @@ public class ListController {
             datePickerDataPilha.setValue(null);
 
             System.out.println("Registro adicionado: Local - " + localRemedio + ", Quantidade - " + quantidadeRemedio + ", Data - " + dataRemedio);
+            labelRegistrarRemedio.setText("Registrado!");
+
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> {
+                labelRegistrarRemedio.setText("");
+            }));
+            timeline.setCycleCount(1);
+            timeline.play();
+
 
         } catch (NumberFormatException e) {
             System.err.println("Erro: Quantidade deve ser um número inteiro.");
@@ -177,4 +265,25 @@ public class ListController {
         stageListaRemedio.setY(centerY - (stageListaRemedio.getHeight() / 2));
         stageListaRemedio.show();
     }
+
+    @FXML
+    private void handleVoltar() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ecofinder/view/map-view.fxml"));
+            Parent root = loader.load();
+            MapController mapController = loader.getController();
+            Stage stageMapa = (Stage) imageViewVoltar.getScene().getWindow();
+            Scene sceneMapa = new Scene(root);
+            stageMapa.setScene(sceneMapa);
+            /*Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+            double centerX = screenBounds.getMinX() + (screenBounds.getWidth() / 2);
+            double centerY = screenBounds.getMinY() + (screenBounds.getHeight() / 2);
+            stageMapa.setX(centerX - (stageMapa.getWidth() / 2));
+            stageMapa.setY(centerY - (stageMapa.getHeight() / 2));*/
+            stageMapa.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

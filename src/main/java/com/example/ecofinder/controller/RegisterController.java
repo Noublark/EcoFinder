@@ -4,10 +4,12 @@ import com.example.ecofinder.models.Usuario;
 import com.example.ecofinder.services.ServicosUsuarios;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import java.io.IOException;
 
@@ -25,12 +27,25 @@ public class RegisterController {
     private TextField txtSenhaCadastro2;
     @FXML
     private Button btnCadastrar;
+    @FXML
+    private ImageView imageViewVoltar;
 
     @FXML
     public void initialize() {
         btnCadastrar.setOnAction(event -> {
             handleCadastrar();
         });
+
+        imageViewVoltar.setOnMouseClicked(mouseEvent -> {
+            handleVoltar();
+        });
+
+        btnCadastrar.setOnMouseEntered(event -> btnCadastrar.setCursor(Cursor.HAND));
+        btnCadastrar.setOnMouseExited(event -> btnCadastrar.setCursor(Cursor.DEFAULT));
+
+        imageViewVoltar.setOnMouseEntered(event -> imageViewVoltar.setCursor(Cursor.HAND));
+        imageViewVoltar.setOnMouseExited(event -> imageViewVoltar.setCursor(Cursor.DEFAULT));
+
     }
 
     @FXML
@@ -75,6 +90,21 @@ public class RegisterController {
             alertSenhasDiferentes.showAndWait();
         }
 
+    }
+
+    @FXML
+    public void handleVoltar() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ecofinder/view/login-view.fxml"));
+            Parent root = loader.load();
+            LoginController loginController = loader.getController();
+            Stage stageLogin = (Stage) imageViewVoltar.getScene().getWindow();
+            Scene sceneLogin = new Scene(root);
+            stageLogin.setScene(sceneLogin);
+            stageLogin.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

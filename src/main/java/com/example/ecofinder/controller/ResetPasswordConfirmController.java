@@ -2,6 +2,7 @@ package com.example.ecofinder.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -19,6 +20,10 @@ public class ResetPasswordConfirmController {
         btnOKRedefinir.setOnAction(event -> {
             handleOKRedefinir();
         });
+
+        btnOKRedefinir.setOnMouseEntered(event -> btnOKRedefinir.setCursor(Cursor.HAND));
+        btnOKRedefinir.setOnMouseExited(event -> btnOKRedefinir.setCursor(Cursor.DEFAULT));
+
     }
 
     @FXML
