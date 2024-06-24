@@ -20,10 +20,10 @@ public class ListaPilha {
             head = noPilha;
         } else {
             NoPilha atual = head;
-            while (atual.getProximoPilha() != null) {
+            while (atual.getProximoPilha() != null) { // Percorre a lista até encontrar o último nó
                 atual = atual.getProximoPilha();
             }
-            atual.setProximoPilha(noPilha);
+            atual.setProximoPilha(noPilha); // Adiciona o novo nó como próximo nó ao final da lista
         }
     }
 }

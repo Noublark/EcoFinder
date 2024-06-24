@@ -24,7 +24,7 @@ public class LoginController {
 
     Usuario objUsuario = new Usuario();
     ServicosUsuarios servicos = new ServicosUsuarios();
-    public static String usuarioLogado;
+    public static String usuarioLogado; // variavel global que armazena o login do usuário autenticado
 
     @FXML
     private TextField txtLogin;
@@ -53,8 +53,8 @@ public class LoginController {
             handleEsqueceu();
         });
 
-        btnLogin.setOnMouseEntered(event -> btnLogin.setCursor(Cursor.HAND));
-        btnLogin.setOnMouseExited(event -> btnLogin.setCursor(Cursor.DEFAULT));
+        btnLogin.setOnMouseEntered(event -> btnLogin.setCursor(Cursor.HAND)); // evento para mudar o cursor qnd o mouse passar por cima
+        btnLogin.setOnMouseExited(event -> btnLogin.setCursor(Cursor.DEFAULT)); // evento para voltar o cursor pro padrao qnd retirar o mouse
 
         btnCadastro.setOnMouseEntered(event -> btnCadastro.setCursor(Cursor.HAND));
         btnCadastro.setOnMouseExited(event -> btnCadastro.setCursor(Cursor.DEFAULT));
@@ -70,27 +70,29 @@ public class LoginController {
 
         ResultSet rsusuario = (ResultSet) servicos.autenticador(objUsuario);
 
-        if (rsusuario.next()) {
+        if (rsusuario.next()) { // verifica se há pelo menos uma linha no ResulSet, retorna true ou false
             try {
                 usuarioLogado = rsusuario.getString("login");
-                System.out.println(usuarioLogado);
+                System.out.println("Usuário logado: " + usuarioLogado);
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ecofinder/view/map-view.fxml"));
                 Parent root = loader.load();
                 MapController mapController = loader.getController();
                 Stage stageMapa = (Stage) btnLogin.getScene().getWindow();
                 Scene sceneMapa = new Scene(root);
                 stageMapa.setScene(sceneMapa);
-                Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-                double centerX = screenBounds.getMinX() + (screenBounds.getWidth() / 2);
-                double centerY = screenBounds.getMinY() + (screenBounds.getHeight() / 2);
-                stageMapa.setX(centerX - (stageMapa.getWidth() / 2));
-                stageMapa.setY(centerY - (stageMapa.getHeight() / 2));
+                Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds(); // centralizar a janela
+                double centerX = screenBounds.getMinX() + (screenBounds.getWidth() / 2); // centralizar a janela
+                double centerY = screenBounds.getMinY() + (screenBounds.getHeight() / 2); // centralizar a janela
+                stageMapa.setX(centerX - (stageMapa.getWidth() / 2)); // centralizar a janela
+                stageMapa.setY(centerY - (stageMapa.getHeight() / 2)); // centralizar a janela
                 stageMapa.show();
             } catch (IOException e) {
                 e.printStackTrace();
+            }  finally {
+                servicos.fecharRecursos();
             }
         } else {
-            Alert alertErroAutenticacao = new Alert(Alert.AlertType.ERROR);
+            Alert alertErroAutenticacao = new Alert(Alert.AlertType.ERROR); // exibe uma janela de erro
             Image icon = new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png"));
             alertErroAutenticacao.setTitle("Erro");
             alertErroAutenticacao.setHeaderText(null);
@@ -98,6 +100,7 @@ public class LoginController {
             Stage stageErroAutenticacao = (Stage) alertErroAutenticacao.getDialogPane().getScene().getWindow();
             stageErroAutenticacao.getIcons().add(new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png")));
             alertErroAutenticacao.showAndWait();
+            servicos.fecharRecursos();
         }
 
     }

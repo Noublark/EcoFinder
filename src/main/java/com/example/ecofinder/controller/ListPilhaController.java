@@ -38,7 +38,7 @@ public class ListPilhaController {
         String texto = new ServicosUsuarios().imprimirListaPilha(login);
 
         txtFlowPilha.getChildren().clear();
-        txtFlowPilha.getChildren().add(new javafx.scene.text.Text(texto));
+        txtFlowPilha.getChildren().add(new javafx.scene.text.Text(texto)); // adiciona o texto ao TextFlow
 
     }
 

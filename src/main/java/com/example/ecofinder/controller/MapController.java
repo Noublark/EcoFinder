@@ -31,7 +31,7 @@ public class MapController {
 
     @FXML
     public void initialize() {
-        /*loadMap();*/
+        loadMap();
 
         btnLista.setOnAction(event -> {
             handleLista();
@@ -64,7 +64,7 @@ public class MapController {
         }
     }
 
-    /*private void loadMap() {
+    private void loadMap() { // carrega um mapa em um webview a partir de um arquivo html
         WebEngine webEngine = webViewMap.getEngine();
         URL url = getClass().getResource("/com/example/ecofinder/view/map.html");
         if (url != null) {
@@ -72,12 +72,12 @@ public class MapController {
         } else {
             System.out.println("Arquivo HTML não encontrado.");
         }
-    }*/
+    }
 
     @FXML
     private void handleSair() {
         try {
-            Alert confirmarSaida = new Alert(Alert.AlertType.CONFIRMATION);
+            Alert confirmarSaida = new Alert(Alert.AlertType.CONFIRMATION); // exibe janela de confirmacao
             Image icon = new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png"));
             confirmarSaida.setTitle("Sair");
             confirmarSaida.setHeaderText(null);
@@ -93,6 +93,7 @@ public class MapController {
                 Stage stageLogin = (Stage) imageViewSair.getScene().getWindow();
                 Scene sceneLogin = new Scene(root);
                 stageLogin.setScene(sceneLogin);
+                 //codigo abaixo centraliza janela
                 Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
                 double centerX = screenBounds.getMinX() + (screenBounds.getWidth() / 2);
                 double centerY = screenBounds.getMinY() + (screenBounds.getHeight() / 2);

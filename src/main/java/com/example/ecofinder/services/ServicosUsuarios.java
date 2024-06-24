@@ -2,7 +2,6 @@ package com.example.ecofinder.services;
 
 import com.example.ecofinder.models.*;
 
-import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,12 +11,12 @@ import java.util.Date;
 public class ServicosUsuarios {
 
     Connection conn ;
-    PreparedStatement pstm;
-    
+    PreparedStatement pstm; // usado para criar um objeto que representa a instrução SQL que será executada
+
     public void cadastrarUsuario (Usuario usuario) {
         String sql = "insert into usuario (login, senha) values (?, ?)";
 
-        conn = new ConexaoMySQL().conexao();
+        conn = new ConexaoSQLite().conexao();
 
         try {
 
@@ -29,12 +28,12 @@ public class ServicosUsuarios {
             pstm.close();
 
         } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "ServicosUsuario" + erro);
+            System.err.println("ServicosUsuario" + erro);
         }
     }
 
     public ResultSet autenticador (Usuario objUsuario) {
-        conn = new ConexaoMySQL().conexao();
+        conn = new ConexaoSQLite().conexao();
 
         try {
             String sql = "select * from usuario where login = ? and senha = ?";
@@ -46,13 +45,13 @@ public class ServicosUsuarios {
             return rs;
 
         } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "ServicosUsuario" + erro);
+            System.err.println("ServicosUsuario: " + erro);
             return null;
         }
     }
 
     public boolean verificarLogin(String login) {
-        conn = new ConexaoMySQL().conexao();
+        conn = new ConexaoSQLite().conexao();
 
         try {
             String sql = "select count(*) as total from usuario where login = ?";
@@ -68,24 +67,15 @@ public class ServicosUsuarios {
             }
 
         } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "Erro ao verificar login existente: " + erro);
+            System.err.println("Erro ao verificar login existente: " + erro);
             return false;
         } finally {
-            try {
-                if (pstm != null) {
-                    pstm.close();
-                }
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            fecharRecursos();
         }
     }
 
     public void redefinirSenha(Usuario objUsuario) {
-        conn = new ConexaoMySQL().conexao();
+        conn = new ConexaoSQLite().conexao();
 
         try {
             String sql = "update usuario set senha = ? where login = ?";
@@ -95,23 +85,14 @@ public class ServicosUsuarios {
 
             pstm.executeUpdate();
         } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "Erro ao redefinir senha: " + erro);
+            System.err.println("Erro ao redefinir senha: " + erro);
         } finally {
-            try {
-                if (pstm != null) {
-                    pstm.close();
-                }
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            fecharRecursos();
         }
     }
 
     public void adicionarListaPilha (String login,ListaPilha listaPilha) {
-        conn = new ConexaoMySQL().conexao();
+        conn = new ConexaoSQLite().conexao();
 
         try {
             String sql = "INSERT INTO pilha (login,localPilha, quantidadePilha, dataPilha) VALUES (?, ?, ?, ?)";
@@ -128,19 +109,20 @@ public class ServicosUsuarios {
             System.out.println("Item adicionado com sucesso ao banco de dados.");
 
         } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "Erro ao adicionar a lista pilha: " + erro);
+            System.err.println("Erro ao adicionar a lista pilha: " + erro);
+        } finally {
+            fecharRecursos();
         }
-
 
     }
 
     public String imprimirListaPilha (String login) {
-        conn = new ConexaoMySQL().conexao();
-        ResultSet rs = null;
+        conn = new ConexaoSQLite().conexao();
+        ResultSet rs;
         StringBuilder lista = new StringBuilder();
 
         try {
-            String sql = "SELECT localPilha, quantidadePilha, dataPilha FROM pilha WHERE login = ?";
+            String sql = "SELECT localPilha, quantidadePilha, dataPilha FROM pilha WHERE login = ?"; // consulta os itens da lista com base no login
             pstm = conn.prepareStatement(sql);
             pstm.setString(1, login);
             rs = pstm.executeQuery();
@@ -154,14 +136,16 @@ public class ServicosUsuarios {
                         .append(", Data: ").append(dataPilha).append("\n");
             }
         } catch (SQLException erro) {
-            throw new RuntimeException("Erro ao imprimir lista pilha: " + erro);
+            System.err.println("Erro ao imprimir lista pilha: " + erro);
+        } finally {
+            fecharRecursos();
         }
 
         return lista.toString();
     }
 
     public void adicionarListaRemedio (String login, ListaRemedio listaRemedio) {
-        conn = new ConexaoMySQL().conexao();
+        conn = new ConexaoSQLite().conexao();
 
         try {
             String sql = "INSERT INTO remedio (login,localRemedio, quantidadeRemedio, dataRemedio) VALUES (?, ?, ?, ?)";
@@ -178,14 +162,16 @@ public class ServicosUsuarios {
             System.out.println("Item adicionado com sucesso ao banco de dados.");
 
         } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "Erro ao adicionar a lista pilha: " + erro);
+            System.err.println("Erro ao adicionar a lista pilha: " + erro);
+        } finally {
+            fecharRecursos();
         }
 
     }
 
     public String imprimirListaRemedio (String login) {
-        conn = new ConexaoMySQL().conexao();
-        ResultSet rs = null;
+        conn = new ConexaoSQLite().conexao();
+        ResultSet rs;
         StringBuilder lista = new StringBuilder();
 
         try {
@@ -203,9 +189,22 @@ public class ServicosUsuarios {
                         .append(", Data: ").append(dataRemedio).append("\n");
             }
         } catch (SQLException erro) {
-            throw new RuntimeException("Erro ao imprimir lista remedio: " + erro);
+            System.err.println("Erro ao imprimir lista remedio: " + erro);
+        } finally {
+            fecharRecursos();
         }
 
         return lista.toString();
     }
+
+    public void fecharRecursos() { // serve para fechar o pstm
+        try {
+            if (pstm != null) {
+                pstm.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

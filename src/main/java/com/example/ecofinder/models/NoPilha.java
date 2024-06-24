@@ -12,7 +12,7 @@ public class NoPilha {
         this.localPilha = localPilha;
         this.quantidadePilha = quantidadePilha;
         this.dataPilha = dataPilha;
-    }
+    } // Construtor da classe NoPilha, inicializa os atributos com os valores fornecidos
 
     public String getLocalPilha() {
         return localPilha;

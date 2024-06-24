@@ -22,6 +22,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ListController {
 
@@ -65,7 +67,7 @@ public class ListController {
             handleRegistrarPilha();
         });
 
-        for (String local : new String[]{"Salvador Shopping", "Atacadão - Salvador Bonocô" }) {
+        for (String local : new String[]{"Salvador Shopping", "Atacadão - Salvador Bonocô" }) { // adiciona as opcoes do menuItem
             MenuItem menuItem = new MenuItem(local);
             menuItem.setOnAction(event -> menuBtnLocalPilha.setText(menuItem.getText()));
             menuBtnLocalPilha.getItems().add(menuItem);
@@ -84,7 +86,7 @@ public class ListController {
             handleRegistrarRemedio();
         });
 
-        for (String local : new String[]{"Drogasil - Salvador Shopping", "Drogaria São Paulo - Pituba" }) {
+        for (String local : new String[]{"Drogasil - Salvador Shopping", "Drogaria São Paulo - Pituba" }) { // adiciona as opcoes do menuItem2
             MenuItem menuItem2 = new MenuItem(local);
             menuItem2.setOnAction(event -> menuBtnLocalRemedio.setText(menuItem2.getText()));
             menuBtnLocalRemedio.getItems().add(menuItem2);
@@ -115,7 +117,7 @@ public class ListController {
     @FXML
     private void handleRegistrarPilha() {
         try {
-            if (menuBtnLocalPilha.getText().equals("Local")) {
+            if (menuBtnLocalPilha.getText().equals("Local")) { // verifica se o botao do local esta vazio, caso esteja, exibe uma janela de erro
                 Alert alertErroLocalPilha = new Alert(Alert.AlertType.ERROR);
                 Image icon = new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png"));
                 alertErroLocalPilha.setTitle("Erro");
@@ -126,9 +128,18 @@ public class ListController {
                 alertErroLocalPilha.showAndWait();
                 throw new NullPointerException("Local não selecionado!");
             }
-            if (txtQntPilha.getText().isEmpty()) {
+            if (txtQntPilha.getText().isEmpty()) { // verifica se a quantidade esta vazia, caso esteja, exibe um erro
                 labelNumPilha.setText("Digite um número válido!");
                 throw new NullPointerException("Quantidade não preenchida");
+            }
+
+            String input = txtQntPilha.getText();
+            Pattern pattern = Pattern.compile("^[1-9]\\d*$"); // verifica se o numero é inteiro e maior que 0
+            Matcher matcher = pattern.matcher(input);
+
+            if (!matcher.matches()) {
+                labelNumPilha.setText("Digite um número válido!");
+                throw new NumberFormatException("Quantidade não é um número inteiro positivo");
             }
             if (datePickerDataPilha.getValue() == null) {
                 Alert alertErroDataPilha = new Alert(Alert.AlertType.ERROR);
@@ -149,7 +160,7 @@ public class ListController {
             LocalDate localDatePilha = datePickerDataPilha.getValue();
             Date dataPilha = Date.from(localDatePilha.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-            listaPilha.add(localPilha, quantidadePilha, dataPilha);
+            listaPilha.add(localPilha, quantidadePilha, dataPilha); // adiciona os dados a lista de pilhas
             String login = LoginController.usuarioLogado;
             new ServicosUsuarios().adicionarListaPilha(login, listaPilha);
             menuBtnLocalPilha.setText("Local");
@@ -167,7 +178,7 @@ public class ListController {
 
 
         } catch (NumberFormatException e) {
-            System.err.println("Erro.");
+            System.err.println("Erro de formatação do número: " + e.getMessage());
         } catch (NullPointerException e) {
             System.err.println("Erro: " + e.getMessage());
         }
@@ -275,11 +286,6 @@ public class ListController {
             Stage stageMapa = (Stage) imageViewVoltar.getScene().getWindow();
             Scene sceneMapa = new Scene(root);
             stageMapa.setScene(sceneMapa);
-            /*Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-            double centerX = screenBounds.getMinX() + (screenBounds.getWidth() / 2);
-            double centerY = screenBounds.getMinY() + (screenBounds.getHeight() / 2);
-            stageMapa.setX(centerX - (stageMapa.getWidth() / 2));
-            stageMapa.setY(centerY - (stageMapa.getHeight() / 2));*/
             stageMapa.show();
         } catch (IOException e) {
             e.printStackTrace();

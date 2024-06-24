@@ -20,10 +20,10 @@ public class ListaRemedio {
             head = noRemedio;
         } else {
             NoRemedio atual = head;
-            while (atual.getProximoRemedio() != null) {
+            while (atual.getProximoRemedio() != null) { // Percorre a lista até encontrar o último nó
                 atual = atual.getProximoRemedio();
             }
-            atual.setProximoRemedio(noRemedio);
+            atual.setProximoRemedio(noRemedio); // Adiciona o novo nó como próximo nó ao final da lista
         }
     }
 }

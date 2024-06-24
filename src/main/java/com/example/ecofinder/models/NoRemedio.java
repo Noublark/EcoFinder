@@ -12,7 +12,7 @@ public class NoRemedio {
         this.localRemedio = localRemedio;
         this.quantidadeRemedio = quantidadeRemedio;
         this.dataRemedio = dataRemedio;
-    }
+    } // Construtor da classe NoRemedio, inicializa os atributos com os valores fornecidos
 
     public String getLocalRemedio() {
         return localRemedio;

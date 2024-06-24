@@ -1,16 +1,71 @@
-<!--
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Simple Marker</title>
-  <script async src="https://maps.googleapis.com/maps/api/js?key=(MINHA CHAVE)=console.debug&libraries=maps,marker&v=beta">
-  </script>
-  <link rel="stylesheet" href="./styleMap.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoFinder</title>
+    <style>
+        #map {
+            height: 670px;
+            width: 1090px;
+        }
+    </style>
 </head>
 <body>
-<gmp-map center="-12.977682555820747, -38.45524027545352" zoom="15" map-id="DEMO_MAP_ID">
-  <gmp-advanced-marker position="-12.977682555820747, -38.45524027545352" title="SHOPPING"></gmp-advanced-marker>
-</gmp-map>
+<div id="map"></div>
+
+<script>
+    function initMap() {
+        var unijorge = { lat: -12.965374, lng: -38.460790 };
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 12,
+            center: unijorge
+        });
+
+        var markerUnijorge = new google.maps.Marker({
+            position: unijorge,
+            map: map,
+            title: 'UNIJORGE'
+        });
+
+        var destinations = [
+            { lat: -12.979335, lng: -38.464516, name: 'Pelourinho, Salvador' },
+            { lat: -12.994443, lng: -38.508469, name: 'Mercado Modelo, Salvador' },
+            { lat: -12.966865, lng: -38.508884, name: 'Farol da Barra, Salvador' },
+            { lat: -12.969682, lng: -38.483590, name: 'Igreja do Bonfim, Salvador' }
+        ];
+
+        destinations.forEach(function(destination) {
+            var marker = new google.maps.Marker({
+                position: { lat: destination.lat, lng: destination.lng },
+                map: map,
+                title: destination.name
+            });
+
+            var directionsService = new google.maps.DirectionsService();
+            var directionsDisplay = new google.maps.DirectionsRenderer({
+                map: map,
+                suppressMarkers: true
+            });
+
+            var request = {
+                origin: unijorge,
+                destination: { lat: destination.lat, lng: destination.lng },
+                travelMode: 'DRIVING'
+            };
+
+            directionsService.route(request, function(result, status) {
+                if (status == 'OK') {
+                    directionsDisplay.setDirections(result);
+                } else {
+                    window.alert('Não foi possível calcular a rota devido a ' + status);
+                }
+            });
+        });
+    }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=(API_KEY_HERE)&callback=initMap" async defer></script>
 </body>
 </html>
--->

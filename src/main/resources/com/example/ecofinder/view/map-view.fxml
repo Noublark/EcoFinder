@@ -11,8 +11,8 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
+            <WebView fx:id="webViewMap" layoutY="55.0" minHeight="670.0" minWidth="1090.0" prefHeight="695.0" prefWidth="1106.0" />
             <Button fx:id="btnLista" layoutX="20.0" layoutY="14.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleLista" prefHeight="32.0" prefWidth="59.0" style="-fx-background-color: lightgreen; -fx-background-radius: 50em;" text="Lista" />
-            <WebView fx:id="webViewMap" layoutX="281.0" layoutY="155.0" prefHeight="472.0" prefWidth="545.0" />
             <ImageView fx:id="imageViewSair" fitHeight="26.0" fitWidth="19.0" layoutX="1061.0" layoutY="14.0" onMouseClicked="#handleSair" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../static/images/logout.png" />

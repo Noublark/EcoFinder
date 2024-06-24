@@ -12,6 +12,7 @@ module com.example.ecofinder {
     requires com.almasb.fxgl.all;
     requires java.sql;
     requires java.desktop;
+    requires jdk.jsobject;
 
     opens com.example.ecofinder.controller to javafx.fxml;
     exports com.example.ecofinder.controller;

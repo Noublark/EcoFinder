@@ -53,7 +53,7 @@ public class RegisterController {
         String loginCadastro = txtLoginCadastro.getText();
         objUsuario.setLogin(loginCadastro);
         if (servicos.verificarLogin(loginCadastro)) {
-            Alert alertUsuarioEmUso = new Alert(Alert.AlertType.ERROR);
+            Alert alertUsuarioEmUso = new Alert(Alert.AlertType.ERROR); // exibe alerta dizendo que o nome de usuario ja esta sendo utilizado
             Image icon = new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png"));
             alertUsuarioEmUso.setTitle("Erro");
             alertUsuarioEmUso.setHeaderText(null);
@@ -65,7 +65,7 @@ public class RegisterController {
         }
         String senhaCadastro = txtSenhaCadastro.getText();
         String senhaCadastro2 = txtSenhaCadastro2.getText();
-        if (senhaCadastro.equals((senhaCadastro2))) {
+        if (senhaCadastro.equals((senhaCadastro2))) { // verifica se as duas senhas sao iguais, caso seja, setta senha e cadastra usuario
             objUsuario.setSenha(senhaCadastro);
             servicos.cadastrarUsuario(objUsuario);
             try {

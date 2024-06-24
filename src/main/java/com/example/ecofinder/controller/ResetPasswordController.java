@@ -56,7 +56,7 @@ public class ResetPasswordController {
         objUsuario.setLoginRedefinir(loginRedefinir);
         String senhaRedefinir = txtSenhaRedefinir.getText();
         String senhaRedefinir2 = txtSenhaRedefinir2.getText();
-        if (senhaRedefinir.equals((senhaRedefinir2))) {
+        if (senhaRedefinir.equals((senhaRedefinir2))) { // verifica se as duas senhas sao iguais, caso seja, redefine a senha
             objUsuario.setSenhaRedefinir(senhaRedefinir);
             servicos.redefinirSenha(objUsuario);
             try {
