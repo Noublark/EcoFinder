@@ -62,7 +62,7 @@ public class ResetPasswordController {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ecofinder/view/reset-password-confirm-view.fxml"));
                 Parent root = loader.load();
-                ResetPasswordConfirmController resetPasswordConfirmController = loader.getController();
+                loader.getController();
                 Stage stageMudarSenhaConfirmado = (Stage) btnRedefinir.getScene().getWindow();
                 Scene sceneMudarSenhaConfirmado = new Scene(root);
                 stageMudarSenhaConfirmado.setScene(sceneMudarSenhaConfirmado);
@@ -72,7 +72,6 @@ public class ResetPasswordController {
             }
         } else {
             Alert alertSenhasDiferentes = new Alert(Alert.AlertType.ERROR);
-            Image icon = new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png"));
             alertSenhasDiferentes.setTitle("Erro");
             alertSenhasDiferentes.setHeaderText(null);
             alertSenhasDiferentes.setContentText("As senhas não são iguais!");
@@ -87,7 +86,7 @@ public class ResetPasswordController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ecofinder/view/login-view.fxml"));
             Parent root = loader.load();
-            LoginController loginController = loader.getController();
+            loader.getController();
             Stage stageLogin = (Stage) imageViewVoltar.getScene().getWindow();
             Scene sceneLogin = new Scene(root);
             stageLogin.setScene(sceneLogin);

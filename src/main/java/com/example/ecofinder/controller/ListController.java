@@ -162,7 +162,7 @@ public class ListController {
 
             listaPilha.add(localPilha, quantidadePilha, dataPilha); // adiciona os dados a lista de pilhas
             String login = LoginController.usuarioLogado;
-            new ServicosUsuarios().adicionarListaPilha(login, listaPilha);
+            new ServicosUsuarios().adicionarListaPilha(login, listaPilha); // passa login e lista como parametro para ser adicionados ao banco de dados
             menuBtnLocalPilha.setText("Local");
             txtQntPilha.clear();
             datePickerDataPilha.setValue(null);
@@ -170,7 +170,7 @@ public class ListController {
             System.out.println("Registro adicionado: Local - " + localPilha + ", Quantidade - " + quantidadePilha + ", Data - " + dataPilha);
             labelRegistrarPilha.setText("Registrado!");
 
-            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> {
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> { // espera 2 segundos para retirar o texto "Registrado!"
                 labelRegistrarPilha.setText("");
             }));
             timeline.setCycleCount(1);
@@ -236,9 +236,9 @@ public class ListController {
             LocalDate localDateRemedio = datePickerDataRemedio.getValue();
             Date dataRemedio = Date.from(localDateRemedio.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-            listaRemedio.add(localRemedio, quantidadeRemedio, dataRemedio);
+            listaRemedio.add(localRemedio, quantidadeRemedio, dataRemedio); // adiciona os dados a lista de remedios
             String login = LoginController.usuarioLogado;
-            new ServicosUsuarios().adicionarListaRemedio(login, listaRemedio);
+            new ServicosUsuarios().adicionarListaRemedio(login, listaRemedio); // passa login e lista como parametro para ser adicionados ao banco de dados
             menuBtnLocalRemedio.setText("Local");
             txtQntPilha.clear();
             datePickerDataPilha.setValue(null);
@@ -265,7 +265,7 @@ public class ListController {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ecofinder/view/list-remedio-view.fxml"));
         Parent root = loader.load();
-        ListRemedioController listRemedioController = loader.getController();
+        loader.getController();
         Stage stageListaRemedio = (Stage) linkListaRemedio.getScene().getWindow();
         Scene sceneListaRemedio = new Scene(root);
         stageListaRemedio.setScene(sceneListaRemedio);
@@ -282,7 +282,7 @@ public class ListController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ecofinder/view/map-view.fxml"));
             Parent root = loader.load();
-            MapController mapController = loader.getController();
+            loader.getController();
             Stage stageMapa = (Stage) imageViewVoltar.getScene().getWindow();
             Scene sceneMapa = new Scene(root);
             stageMapa.setScene(sceneMapa);

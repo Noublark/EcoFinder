@@ -54,7 +54,6 @@ public class RegisterController {
         objUsuario.setLogin(loginCadastro);
         if (servicos.verificarLogin(loginCadastro)) {
             Alert alertUsuarioEmUso = new Alert(Alert.AlertType.ERROR); // exibe alerta dizendo que o nome de usuario ja esta sendo utilizado
-            Image icon = new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png"));
             alertUsuarioEmUso.setTitle("Erro");
             alertUsuarioEmUso.setHeaderText(null);
             alertUsuarioEmUso.setContentText("Nome de usuário já está em uso!");
@@ -81,7 +80,6 @@ public class RegisterController {
             }
         } else {
             Alert alertSenhasDiferentes = new Alert(Alert.AlertType.ERROR);
-            Image icon = new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png"));
             alertSenhasDiferentes.setTitle("Erro");
             alertSenhasDiferentes.setHeaderText(null);
             alertSenhasDiferentes.setContentText("As senhas não são iguais!");
@@ -97,7 +95,7 @@ public class RegisterController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ecofinder/view/login-view.fxml"));
             Parent root = loader.load();
-            LoginController loginController = loader.getController();
+            loader.getController();
             Stage stageLogin = (Stage) imageViewVoltar.getScene().getWindow();
             Scene sceneLogin = new Scene(root);
             stageLogin.setScene(sceneLogin);

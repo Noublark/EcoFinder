@@ -54,7 +54,7 @@ public class MapController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ecofinder/view/list-view.fxml"));
             Parent root = loader.load();
-            ListController listController = loader.getController();
+            loader.getController();
             Stage stageLista = (Stage) btnLista.getScene().getWindow();
             Scene sceneLista = new Scene(root);
             stageLista.setScene(sceneLista);
@@ -78,7 +78,6 @@ public class MapController {
     private void handleSair() {
         try {
             Alert confirmarSaida = new Alert(Alert.AlertType.CONFIRMATION); // exibe janela de confirmacao
-            Image icon = new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png"));
             confirmarSaida.setTitle("Sair");
             confirmarSaida.setHeaderText(null);
             confirmarSaida.setContentText("Tem certeza que deseja sair?");
@@ -89,7 +88,7 @@ public class MapController {
             if (escolha.isPresent() && escolha.get() == ButtonType.OK ){
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ecofinder/view/login-view.fxml"));
                 Parent root = loader.load();
-                LoginController loginController = loader.getController();
+                loader.getController();
                 Stage stageLogin = (Stage) imageViewSair.getScene().getWindow();
                 Scene sceneLogin = new Scene(root);
                 stageLogin.setScene(sceneLogin);

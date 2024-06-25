@@ -76,7 +76,7 @@ public class LoginController {
                 System.out.println("Usuário logado: " + usuarioLogado);
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ecofinder/view/map-view.fxml"));
                 Parent root = loader.load();
-                MapController mapController = loader.getController();
+                loader.getController();
                 Stage stageMapa = (Stage) btnLogin.getScene().getWindow();
                 Scene sceneMapa = new Scene(root);
                 stageMapa.setScene(sceneMapa);
@@ -93,7 +93,6 @@ public class LoginController {
             }
         } else {
             Alert alertErroAutenticacao = new Alert(Alert.AlertType.ERROR); // exibe uma janela de erro
-            Image icon = new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png"));
             alertErroAutenticacao.setTitle("Erro");
             alertErroAutenticacao.setHeaderText(null);
             alertErroAutenticacao.setContentText("Nome de usuário ou senha inválidos!");
@@ -110,7 +109,7 @@ public class LoginController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ecofinder/view/register-view.fxml"));
             Parent root = loader.load();
-            RegisterController registerController = loader.getController();
+            loader.getController();
             Stage stageCadastro = (Stage) btnCadastro.getScene().getWindow();
             Scene sceneCadastro = new Scene(root);
             stageCadastro.setScene(sceneCadastro);
@@ -125,7 +124,7 @@ public class LoginController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ecofinder/view/reset-password-view.fxml"));
             Parent root = loader.load();
-            ResetPasswordController resetPasswordController = loader.getController();
+            loader.getController();
             Stage stageEsqueceuSenha = (Stage) linkSenha.getScene().getWindow();
             Scene sceneEsqueceuSenha = new Scene(root);
             stageEsqueceuSenha.setScene(sceneEsqueceuSenha);

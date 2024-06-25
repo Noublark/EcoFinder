@@ -47,7 +47,7 @@ public class ListPilhaController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ecofinder/view/list-view.fxml"));
             Parent root = loader.load();
-            ListController listController = loader.getController();
+            loader.getController();
             Stage stageLista = (Stage) imageViewVoltar.getScene().getWindow();
             Scene sceneLista = new Scene(root);
             stageLista.setScene(sceneLista);
