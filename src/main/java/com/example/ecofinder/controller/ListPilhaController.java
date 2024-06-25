@@ -3,13 +3,11 @@ package com.example.ecofinder.controller;
 import com.example.ecofinder.services.ServicosUsuarios;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.TextFlow;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,9 +21,7 @@ public class ListPilhaController {
     public void initialize() {
         adicionarTexto();
 
-        imageViewVoltar.setOnMouseClicked(mouseEvent -> {
-            handleVoltar();
-        });
+        imageViewVoltar.setOnMouseClicked(mouseEvent -> handleVoltar());
 
         imageViewVoltar.setOnMouseEntered(event -> imageViewVoltar.setCursor(Cursor.HAND));
         imageViewVoltar.setOnMouseExited(event -> imageViewVoltar.setCursor(Cursor.DEFAULT));

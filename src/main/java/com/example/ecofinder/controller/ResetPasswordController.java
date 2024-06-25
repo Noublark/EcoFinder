@@ -34,13 +34,9 @@ public class ResetPasswordController {
 
     @FXML
     public void initialize() {
-        btnRedefinir.setOnAction(event -> {
-            handleRedefinir();
-        });
+        btnRedefinir.setOnAction(event -> handleRedefinir());
 
-        imageViewVoltar.setOnMouseClicked(mouseEvent -> {
-            handleVoltar();
-        });
+        imageViewVoltar.setOnMouseClicked(mouseEvent -> handleVoltar());
 
         btnRedefinir.setOnMouseEntered(event -> btnRedefinir.setCursor(Cursor.HAND));
         btnRedefinir.setOnMouseExited(event -> btnRedefinir.setCursor(Cursor.DEFAULT));

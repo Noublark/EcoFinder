@@ -32,13 +32,9 @@ public class RegisterController {
 
     @FXML
     public void initialize() {
-        btnCadastrar.setOnAction(event -> {
-            handleCadastrar();
-        });
+        btnCadastrar.setOnAction(event -> handleCadastrar());
 
-        imageViewVoltar.setOnMouseClicked(mouseEvent -> {
-            handleVoltar();
-        });
+        imageViewVoltar.setOnMouseClicked(mouseEvent -> handleVoltar());
 
         btnCadastrar.setOnMouseEntered(event -> btnCadastrar.setCursor(Cursor.HAND));
         btnCadastrar.setOnMouseExited(event -> btnCadastrar.setCursor(Cursor.DEFAULT));
@@ -70,7 +66,7 @@ public class RegisterController {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ecofinder/view/register-confirm-view.fxml"));
                 Parent root = loader.load();
-                RegisterConfirmController registerConfirmController = loader.getController();
+                loader.getController();
                 Stage stageCadastroConfirmado = (Stage) btnCadastrar.getScene().getWindow();
                 Scene sceneCadastroConfirmado = new Scene(root);
                 stageCadastroConfirmado.setScene(sceneCadastroConfirmado);

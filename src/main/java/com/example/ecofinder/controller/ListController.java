@@ -63,9 +63,7 @@ public class ListController {
 
     @FXML
     public void initialize() {
-        btnRegistrarPilha.setOnAction(event -> {
-            handleRegistrarPilha();
-        });
+        btnRegistrarPilha.setOnAction(event -> handleRegistrarPilha());
 
         for (String local : new String[]{"Salvador Shopping", "Atacadão - Salvador Bonocô" }) { // adiciona as opcoes do menuItem
             MenuItem menuItem = new MenuItem(local);
@@ -82,20 +80,16 @@ public class ListController {
             }
         });
 
-        btnRegistrarRemedio.setOnAction(event -> {
-            handleRegistrarRemedio();
-        });
+        btnRegistrarRemedio.setOnAction(event -> handleRegistrarRemedio());
 
-        for (String local : new String[]{"Drogasil - Salvador Shopping", "Drogaria São Paulo - Pituba" }) { // adiciona as opcoes do menuItem2
+        for (String local : new String[]{"Drogasil - Caminho das Árvores", "Drogaria São Paulo - Pituba" }) { // adiciona as opcoes do menuItem2
             MenuItem menuItem2 = new MenuItem(local);
             menuItem2.setOnAction(event -> menuBtnLocalRemedio.setText(menuItem2.getText()));
             menuBtnLocalRemedio.getItems().add(menuItem2);
         }
         menuBtnLocalRemedio.setText("Local");
 
-        imageViewVoltar.setOnMouseClicked(mouseEvent -> {
-            handleVoltar();
-        });
+        imageViewVoltar.setOnMouseClicked(mouseEvent -> handleVoltar());
 
         btnRegistrarPilha.setOnMouseEntered(event -> btnRegistrarPilha.setCursor(Cursor.HAND));
         btnRegistrarPilha.setOnMouseExited(event -> btnRegistrarPilha.setCursor(Cursor.DEFAULT));
@@ -119,7 +113,6 @@ public class ListController {
         try {
             if (menuBtnLocalPilha.getText().equals("Local")) { // verifica se o botao do local esta vazio, caso esteja, exibe uma janela de erro
                 Alert alertErroLocalPilha = new Alert(Alert.AlertType.ERROR);
-                Image icon = new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png"));
                 alertErroLocalPilha.setTitle("Erro");
                 alertErroLocalPilha.setHeaderText(null);
                 alertErroLocalPilha.setContentText("Local não selecionado!");
@@ -143,7 +136,6 @@ public class ListController {
             }
             if (datePickerDataPilha.getValue() == null) {
                 Alert alertErroDataPilha = new Alert(Alert.AlertType.ERROR);
-                Image icon = new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png"));
                 alertErroDataPilha.setTitle("Erro");
                 alertErroDataPilha.setHeaderText(null);
                 alertErroDataPilha.setContentText("Data não selecionada!");
@@ -189,7 +181,7 @@ public class ListController {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ecofinder/view/list-pilha-view.fxml"));
         Parent root = loader.load();
-        ListPilhaController listPilhaController = loader.getController();
+        loader.getController();
         Stage stageListaPilha = (Stage) linkListaPilha.getScene().getWindow();
         Scene sceneListaPilha = new Scene(root);
         stageListaPilha.setScene(sceneListaPilha);
@@ -206,7 +198,6 @@ public class ListController {
         try {
             if (menuBtnLocalRemedio.getText().equals("Local")) {
                 Alert alertErroLocalRemedio = new Alert(Alert.AlertType.ERROR);
-                Image icon = new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png"));
                 alertErroLocalRemedio.setTitle("Erro");
                 alertErroLocalRemedio.setHeaderText(null);
                 alertErroLocalRemedio.setContentText("Local não selecionado!");
@@ -221,7 +212,6 @@ public class ListController {
             }
             if (datePickerDataRemedio.getValue() == null) {
                 Alert alertErroDataRemedio = new Alert(Alert.AlertType.ERROR);
-                Image icon = new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png"));
                 alertErroDataRemedio.setTitle("Erro");
                 alertErroDataRemedio.setHeaderText(null);
                 alertErroDataRemedio.setContentText("Data não selecionada!");
@@ -246,9 +236,7 @@ public class ListController {
             System.out.println("Registro adicionado: Local - " + localRemedio + ", Quantidade - " + quantidadeRemedio + ", Data - " + dataRemedio);
             labelRegistrarRemedio.setText("Registrado!");
 
-            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> {
-                labelRegistrarRemedio.setText("");
-            }));
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> labelRegistrarRemedio.setText("")));
             timeline.setCycleCount(1);
             timeline.play();
 

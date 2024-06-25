@@ -22,9 +22,7 @@ public class ListRemedioController {
     public void initialize() {
         adicionarTexto();
 
-        imageViewVoltar.setOnMouseClicked(mouseEvent -> {
-            handleVoltar();
-        });
+        imageViewVoltar.setOnMouseClicked(mouseEvent -> handleVoltar());
 
         imageViewVoltar.setOnMouseEntered(event -> imageViewVoltar.setCursor(Cursor.HAND));
         imageViewVoltar.setOnMouseExited(event -> imageViewVoltar.setCursor(Cursor.DEFAULT));

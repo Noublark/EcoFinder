@@ -74,7 +74,7 @@ public class ServicosUsuarios {
         }
     }
 
-    public void redefinirSenha(Usuario objUsuario) {
+    public void redefinirSenha (Usuario objUsuario) {
         conn = new ConexaoSQLite().conexao();
 
         try {

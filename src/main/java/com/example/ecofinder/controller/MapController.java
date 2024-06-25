@@ -33,14 +33,10 @@ public class MapController {
     public void initialize() {
         loadMap();
 
-        btnLista.setOnAction(event -> {
-            handleLista();
-        });
+        btnLista.setOnAction(event -> handleLista());
 
 
-        imageViewSair.setOnMouseClicked(mouseEvent -> {
-            handleSair();
-        });
+        imageViewSair.setOnMouseClicked(mouseEvent -> handleSair());
 
         btnLista.setOnMouseEntered(event -> btnLista.setCursor(Cursor.HAND));
         btnLista.setOnMouseExited(event -> btnLista.setCursor(Cursor.DEFAULT));
@@ -68,7 +64,7 @@ public class MapController {
         WebEngine webEngine = webViewMap.getEngine();
         URL url = getClass().getResource("/com/example/ecofinder/view/map.html");
         if (url != null) {
-            ((WebEngine) webEngine).load(((URL) url).toExternalForm());
+            webEngine.load(url.toExternalForm());
         } else {
             System.out.println("Arquivo HTML não encontrado.");
         }

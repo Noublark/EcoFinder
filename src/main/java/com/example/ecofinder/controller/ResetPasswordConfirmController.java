@@ -17,9 +17,7 @@ public class ResetPasswordConfirmController {
 
     @FXML
     public void initialize() {
-        btnOKRedefinir.setOnAction(event -> {
-            handleOKRedefinir();
-        });
+        btnOKRedefinir.setOnAction(event -> handleOKRedefinir());
 
         btnOKRedefinir.setOnMouseEntered(event -> btnOKRedefinir.setCursor(Cursor.HAND));
         btnOKRedefinir.setOnMouseExited(event -> btnOKRedefinir.setCursor(Cursor.DEFAULT));

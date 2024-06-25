@@ -46,12 +46,8 @@ public class LoginController {
                 throw new RuntimeException(e);
             }
         });
-        btnCadastro.setOnAction(event -> {
-            handleCadastro();
-        });
-        linkSenha.setOnAction(event -> {
-            handleEsqueceu();
-        });
+        btnCadastro.setOnAction(event -> handleCadastro());
+        linkSenha.setOnAction(event -> handleEsqueceu());
 
         btnLogin.setOnMouseEntered(event -> btnLogin.setCursor(Cursor.HAND)); // evento para mudar o cursor qnd o mouse passar por cima
         btnLogin.setOnMouseExited(event -> btnLogin.setCursor(Cursor.DEFAULT)); // evento para voltar o cursor pro padrao qnd retirar o mouse

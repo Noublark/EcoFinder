@@ -17,9 +17,7 @@ public class RegisterConfirmController {
 
     @FXML
     public void initialize() {
-        btnOK.setOnAction(event -> {
-            handleOK();
-        });
+        btnOK.setOnAction(event -> handleOK());
 
         btnOK.setOnMouseEntered(event -> btnOK.setCursor(Cursor.HAND));
         btnOK.setOnMouseExited(event -> btnOK.setCursor(Cursor.DEFAULT));
