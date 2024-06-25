@@ -80,6 +80,13 @@ public class MapController {
             confirmarSaida.setGraphic(null);
             Stage stageConfirmarSaida = (Stage) confirmarSaida.getDialogPane().getScene().getWindow();
             stageConfirmarSaida.getIcons().add(new Image(getClass().getResourceAsStream("/com/example/ecofinder/static/images/EcoFinderIcon.png")));
+            stageConfirmarSaida.setOnShown(event -> {
+                Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds(); // centralizar na tela
+                double centerX = screenBounds.getMinX() + (screenBounds.getWidth() / 2); // centralizar na tela
+                double centerY = screenBounds.getMinY() + (screenBounds.getHeight() / 2); // centralizar na tela
+                stageConfirmarSaida.setX(centerX - (stageConfirmarSaida.getWidth() / 2)); // centralizar na tela
+                stageConfirmarSaida.setY(centerY - (stageConfirmarSaida.getHeight() / 2)); // centralizar na tela
+            });
             Optional<ButtonType> escolha = confirmarSaida.showAndWait();
             if (escolha.isPresent() && escolha.get() == ButtonType.OK ){
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ecofinder/view/login-view.fxml"));

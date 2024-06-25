@@ -210,6 +210,14 @@ public class ListController {
                 labelNumRemedio.setText("Digite um número válido!");
                 throw new NullPointerException("Quantidade não preenchida");
             }
+            String input = txtQntRemedio.getText();
+            Pattern pattern = Pattern.compile("^[1-9]\\d*$"); // verifica se o numero é inteiro e maior que 0
+            Matcher matcher = pattern.matcher(input);
+
+            if (!matcher.matches()) {
+                labelNumRemedio.setText("Digite um número válido!");
+                throw new NumberFormatException("Quantidade não é um número inteiro positivo");
+            }
             if (datePickerDataRemedio.getValue() == null) {
                 Alert alertErroDataRemedio = new Alert(Alert.AlertType.ERROR);
                 alertErroDataRemedio.setTitle("Erro");
@@ -221,6 +229,8 @@ public class ListController {
                 throw new NullPointerException("Data não selecionada");
             }
 
+            labelNumRemedio.setText("");
+
             String localRemedio = menuBtnLocalRemedio.getText();
             int quantidadeRemedio = Integer.parseInt(txtQntRemedio.getText());
             LocalDate localDateRemedio = datePickerDataRemedio.getValue();
@@ -230,8 +240,8 @@ public class ListController {
             String login = LoginController.usuarioLogado;
             new ServicosUsuarios().adicionarListaRemedio(login, listaRemedio); // passa login e lista como parametro para ser adicionados ao banco de dados
             menuBtnLocalRemedio.setText("Local");
-            txtQntPilha.clear();
-            datePickerDataPilha.setValue(null);
+            txtQntRemedio.clear();
+            datePickerDataRemedio.setValue(null);
 
             System.out.println("Registro adicionado: Local - " + localRemedio + ", Quantidade - " + quantidadeRemedio + ", Data - " + dataRemedio);
             labelRegistrarRemedio.setText("Registrado!");
